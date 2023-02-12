@@ -30,7 +30,7 @@ const Home = () => {
                                 return (
                                     <h1>{index+1}. {n}</h1>
                                 )
-                            }) : <h1>None</h1>
+                            }) : <h1>No data</h1>
                         }
                     </div>
                     <div style={{ marginBottom:5 }}>Add Name:</div>
