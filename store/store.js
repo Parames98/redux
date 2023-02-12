@@ -1,15 +1,11 @@
 import { configureStore } from '@reduxjs/toolkit';
-import { createWrapper } from 'next-redux-wrapper';
-import { authSlice } from './slices/authSlice';
-import { commentSlice } from './slices/commentSlice';
+import findUser from './slices/authSlice'
 
-const makeStore = () =>
-  configureStore({
+const store = configureStore({
     reducer: {
-      [authSlice.name]: authSlice.reducer,
-      [commentSlice.name]: commentSlice.reducer,
+        findName: findUser ,
     },
-    devTools: true,
-  });
+});
 
-export const wrapper = createWrapper(makeStore);
+
+export default store;

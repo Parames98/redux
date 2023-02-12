@@ -1,34 +1,27 @@
-import { createSlice } from '@reduxjs/toolkit';
-import { HYDRATE } from 'next-redux-wrapper';
+import { createSlice, createAsyncThunk  } from '@reduxjs/toolkit';
 
 const initialState = {
-  authState: false,
-  authUser: '',
+  nameValue: 'Jeevan'
 };
 
-export const authSlice = createSlice({
-  name: 'auth',
-  initialState,
-  reducers: {
-    setAuthState(state, action) {
-      state.authState = action.payload;
-    },
-    setAuthUser(state, action) {
-      state.authUser = action.payload;
-    },
+export const setName = createAsyncThunk(
+    'setName',
+     (name: string) => {
+        return name;
+    }
+);
 
-    extraReducers: {
-      [HYDRATE]: (state, action) => {
-        return {
-          ...state,
-          ...action.payload.auth,
-        };
-      },
-    },
+const findUser = createSlice({
+  name: 'user',
+  initialState,
+  reducers: {},
+  extraReducers(builder) {
+    builder
+        .addCase(setName.fulfilled, (state) => {
+            state.nameValue = initialState.nameValue
+        });
   },
 });
 
-export const { setAuthState, setAuthUser } = authSlice.actions;
-export const selectAuthState = (state) => state.auth.authState;
-export const selectAuthUser = (state) => state.auth.authUser;
-export default authSlice.reducer;
+export default findUser.reducer;
+
