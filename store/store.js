@@ -1,11 +1,10 @@
 import { configureStore } from '@reduxjs/toolkit';
-import findUser from './slices/authSlice'
+import getUpdateName from './slices/userSlice'
 
 const store = configureStore({
     reducer: {
-        findName: findUser ,
+        findName: getUpdateName,
     },
 });
-
 
 export default store;

@@ -1,5 +1,5 @@
 import { useDispatch, useSelector } from 'react-redux'; //updated
-import { selectAuthUser, setAuthState } from '../../../store/slices/authSlice'; // updated
+import { selectAuthUser, setAuthState } from '../../../store/slices/userSlice'; // updated
 import { addComment } from '../../../store/slices/commentSlice'; // updated
 import Avatar from '../atoms/Avatar';
 import Button from '../atoms/Button';

@@ -1,22 +1,38 @@
-import {useSelector, useDispatch} from 'react-redux';
-import {setName} from "../store/slices/authSlice";
+import React, { useState } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import { addName } from "../store/slices/userSlice";
 
-
-export default function Home() {
-    const name = useSelector((state) => state.findName?.nameValue);
-    console.log('My name is :' , name)
+const Home = () => {
+    const getName = useSelector((state) => state.findName.getName);
+    const [name, setName] = useState('');
     const dispatch = useDispatch();
 
-    const giveName = () => {
-        dispatch(setName)
+    const updateGetName = () => {
+        dispatch(addName(name));
+        setName('');
     }
 
     return (
-        <div>
-            <h1>{name}</h1>
-            <button onClick={giveName}>
-                Click Me
+        <div>Name list:
+            {getName.length !== 0 ?
+                getName.map((n, index) => {
+                    return (
+                        <h1>{index+1}. {n}</h1>
+                    )
+                }) : <h1>None</h1>
+            }
+            <label>Add Name:</label>
+            <input
+                style={{ border: '1px solid black' , marginLeft: 5 }}
+                value={name}
+                onChange={e => setName(e.target.value)}/>
+            <button
+                style={{ border: '1px solid black', paddingRight: 5, paddingLeft: 5, marginLeft: 5 }}
+                onClick={updateGetName}
+            >Save Name
             </button>
         </div>
     );
 }
+
+export default Home;
