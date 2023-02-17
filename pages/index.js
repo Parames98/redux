@@ -1,41 +1,18 @@
-import React, { useState } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
-import { addName, updateName, deleteTodo } from "../store/slices/userSlice";
-import {useRouter} from "next/router";
+import React from 'react';
+import { useSelector } from 'react-redux';
+import { useRouter } from "next/router";
 
 
-const Home = () => {
+const UserList = () => {
     const getNameListArray = useSelector((state) => state.user.nameList);
-    const [nameToAdd, setNameToAdd] = useState('');
-    const dispatch = useDispatch();
     const router = useRouter()
-
-    const updateGetNameArray = () => {
-        dispatch(addName(nameToAdd));
-        setNameToAdd('');
-    }
 
     return (
         <div>
-            <div style={{ border: '1px solid black', borderRadius: 20, margin: 300 }}>
+            <div style={{ border: '1px solid black', borderRadius: 20, margin: 200 }}>
                 <div style={{ padding: 20}}>
-                    <div style={{ marginBottom:5 }}>Add Name:</div>
                     <div>
-                        <input
-                            style={{ border: '1px solid black', marginRight: 5 }}
-                            value={nameToAdd}
-                            onChange={e => setNameToAdd(e.target.value)}/>
-                        <button
-                            style={{ border: '1px solid black', paddingRight: 5, paddingLeft: 5 }}
-                            onClick={updateGetNameArray}
-                        >Add
-                        </button>
-                        &nbsp;
-                        <button
-                            style={{ border: '1px solid black', paddingRight: 5, paddingLeft: 5 }}
-                            onClick={() => router.push('./index2')}
-                        >Next
-                        </button>
+                        List of Student
                     </div>
                     <div style={{ marginBottom: 5 }}>
                         {getNameListArray.length !== 0 ?
@@ -46,12 +23,17 @@ const Home = () => {
                             }) : <h1>No data</h1>
                         }
                     </div>
+                    <div>
+                        <button
+                            style={{ border: '1px solid black', paddingRight: 5, paddingLeft: 5 }}
+                            onClick={() => router.push('./addUser')}
+                        >Add User
+                        </button>
+                    </div>
                 </div>
-
-                <hr/>
             </div>
         </div>
     );
 }
 
-export default Home;
+export default UserList;
