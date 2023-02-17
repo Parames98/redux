@@ -1,9 +1,9 @@
 import { configureStore } from '@reduxjs/toolkit';
-import getUpdateName from './slices/userSlice'
+import userSlice from './slices/userSlice'
 
 const store = configureStore({
     reducer: {
-        findName: getUpdateName,
+        user: userSlice,
     },
 });
 
